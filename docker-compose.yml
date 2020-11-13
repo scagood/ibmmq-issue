@@ -1,0 +1,29 @@
+version: '3'
+services:
+  ##############
+  ##  IBM Mq  ##
+  ##############
+  ibmmq:
+    image: 'ibmcom/mq:latest'
+    restart: "no"
+    ports:
+      - "1414:1414"   # MQ
+      - "9443:9443"   # REST
+    environment:
+      - LICENSE=accept
+      - MQ_QMGR_NAME=QM1
+      - MQ_ADMIN_PASSWORD=Passw0rd
+      - MQ_APP_PASSWORD=Passw0rd
+
+  ####################
+  ##  Example code  ##
+  ####################
+  node-10:
+    build:
+      context: .
+      dockerfile: Dockerfile-10
+
+  node-12:
+    build:
+      context: .
+      dockerfile: Dockerfile-12

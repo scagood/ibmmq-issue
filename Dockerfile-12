@@ -1,0 +1,11 @@
+FROM node:12 AS build-layers
+
+WORKDIR /app
+
+COPY ./example.js /app/example.js
+COPY ./package.json /app/package.json
+COPY ./yarn.lock /app/yarn.lock
+
+RUN yarn install
+
+CMD ["node", "/app/example.js"]
